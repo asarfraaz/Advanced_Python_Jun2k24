@@ -31,17 +31,17 @@ def read_prices(filename:str) -> dict[str, float]:
 
     return prices
 
-# Main starts from here
-inventory = read_inventory('Data/inventory.csv')
-prices = read_prices('Data/prices.csv')
+def make_report(inventory:list[dict[str, str|int|float]],
+                prices: dict[str, float]
+               ) -> list[tuple[str, int, float, float]]:
+    report = list()
+    for pr in inventory:
+        name   = pr['name']
+        quant  = pr['quant']
+        latest = prices[name]
+        change = latest - pr['price']
+        one_row = (name, quant, latest, change)
+        report.append(one_row)
 
-total_cost = 0.0
-for pr in inventory:
-    total_cost += pr['quant'] * pr['price']
+    return report
 
-latest_cost = 0.0
-for pr in inventory:
-    latest_cost += pr['quant'] * prices[ pr['name'] ]
-
-gain_or_loss = latest_cost - total_cost
-print("Total Gain/Loss:", gain_or_loss)

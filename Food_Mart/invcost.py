@@ -4,7 +4,8 @@
 import csv
 import sys
 
-def inventory_cost(filename):
+# Annotations
+def inventory_cost(filename:str) -> float:
     total_cost = 0.0
 
     with open(filename) as FH:

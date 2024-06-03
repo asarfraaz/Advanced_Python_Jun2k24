@@ -10,10 +10,15 @@ def read_inventory(filename: str) -> list[tuple[str, int, float]]:
         headers = next(data)
 
         for row in data:
-            name  = row[0]
-            quant = int(row[1]) 
-            price = float(row[2])
-            info = (name, quant, price)
+            #info = dict(name  = row[0],
+            #            quant = int(row[1]),
+            #            price = float(row[2]),
+            #           )
+            info = {
+                    'name' : row[0],
+                    'quant': int(row[1]),
+                    'price': float(row[2]),
+                   }
             inv.append(info)
 
     return inv

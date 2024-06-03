@@ -14,8 +14,13 @@ def inventory_cost(filename):
 
         # Starts iterating from second line onwards
         for row in data:
-            quant = int(row[1])
-            price = float(row[2])
+            try:
+                quant = int(row[1])
+                price = float(row[2])
+            except ValueError as e:
+                print("Bad row", row)
+                continue
+
             total_cost += quant * price
 
     return total_cost

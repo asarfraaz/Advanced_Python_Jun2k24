@@ -14,12 +14,12 @@ def inventory_cost(filename:str) -> float:
         headers = next(data)
 
         # Starts iterating from second line onwards
-        for row in data:
+        for rowno, row in enumerate(data, start=1):
             try:
                 quant = int(row[1])
                 price = float(row[2])
             except ValueError as e:
-                print("Bad row", row)
+                print("Row", rowno, ": Couldn't convert:", row)
                 continue
 
             total_cost += quant * price

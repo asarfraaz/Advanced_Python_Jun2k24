@@ -10,10 +10,11 @@ def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
         headers = next(data)
 
         for row in data:
+            record = dict(zip(headers, row))
             info = {
-                    'name' : row[0],
-                    'quant': int(row[1]),
-                    'price': float(row[2]),
+                    'name' : record['name'],
+                    'quant': int(record['quant']),
+                    'price': float(record['price']),
                    }
             inv.append(info)
 

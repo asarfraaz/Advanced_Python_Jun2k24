@@ -19,6 +19,10 @@ def inventory_cost(filename):
 
     return total_cost
 
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'Data/inventory.csv'
 
-cost = inventory_cost('Data/inventory.csv')
+cost = inventory_cost(filename)
 print("Total cost:", cost)

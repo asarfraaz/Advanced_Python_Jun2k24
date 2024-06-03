@@ -2,6 +2,7 @@
     Find the total cost of inventory
 '''
 import csv
+import sys
 
 def inventory_cost(filename):
     total_cost = 0.0

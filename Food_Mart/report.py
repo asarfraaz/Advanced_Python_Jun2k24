@@ -45,3 +45,16 @@ def make_report(inventory:list[dict[str, str|int|float]],
 
     return report
 
+# Main starts from here
+headers = ('Name', 'Quantity', 'Price', 'Change')
+dashes = tuple(['-' * 10] * 4)
+
+inventory = read_inventory('Data/inventory.csv')
+prices = read_prices('Data/prices.csv')
+report = make_report(inventory, prices)
+
+print("%10s %10s %10s %10s" % headers)
+print("%10s %10s %10s %10s" % dashes)
+for row in report:
+    print("%10s %10d %10.2f %10.2f" % row)
+

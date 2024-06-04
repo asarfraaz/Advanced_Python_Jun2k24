@@ -30,7 +30,8 @@ fig, ax = plt.subplots(figsize=(4, 2))
 ax = sns.barplot(
         data = (df_pvt
                .reset_index()
-               # .sort_values('Revenue')
+               .sort_values('Profit',
+                            ascending=False)
                ),
         x = "Product",
         y = "Profit",
@@ -50,7 +51,8 @@ image_data = BytesIO()
 ax.figure.savefig(image_data)
 
 with pd.ExcelWriter(excel_filename, engine="xlsxwriter") as FH:
-    df_pvt.to_excel(FH, sheet_name = worksheet_name)
+    df_pvt.sort_values('Profit', ascending=False)\
+            .to_excel(FH, sheet_name = worksheet_name)
     shobj = FH.sheets[worksheet_name]
     shobj.insert_image('F4', '' , {'image_data': image_data})
 

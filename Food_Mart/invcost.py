@@ -20,7 +20,7 @@ def inventory_cost(filename:str) -> float:
                 quant = int(record['quant'])
                 price = float(record['price'])
             except ValueError as e:
-                print("Row", rowno, ": Couldn't convert:", row)
+                print(f"Row {rowno}: Couldn't convert: {row}")
                 continue
 
             total_cost += quant * price

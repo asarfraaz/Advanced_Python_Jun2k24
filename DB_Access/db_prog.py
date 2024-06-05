@@ -21,7 +21,9 @@ conn = sqlite3.connect(db_file)
 cur = conn.cursor()
 
 query = "SELECT * FROM 'Students'"
+min_exp = 2
+query += "WHERE exp > ?"
+cur.execute(query, (min_exp,))
 
-cur.execute(query)
 display_rows(cur)
 conn.close()

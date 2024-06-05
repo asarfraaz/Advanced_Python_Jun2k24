@@ -48,4 +48,5 @@ def inventory_report(inventory_filename, prices_filename):
     print_report(report)
 
 # Main starts from here
-inventory_report('Data/inventory.csv', 'Data/prices.csv')
+if __name__ == "__main__":
+    inventory_report('Data/inventory.csv', 'Data/prices.csv')

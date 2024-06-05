@@ -27,10 +27,10 @@ def make_report(inventory:list[dict[str, str|int|float]],
                ) -> list[tuple[str, int, float, float]]:
     report = list()
     for pr in inventory:
-        name   = pr['name']
-        quant  = pr['quant']
+        name   = pr.name
+        quant  = pr.quant
         latest = prices[name]
-        change = latest - pr['price']
+        change = latest - pr.price
         one_row = (name, quant, latest, change)
         report.append(one_row)
 

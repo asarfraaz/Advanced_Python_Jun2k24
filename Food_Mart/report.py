@@ -13,15 +13,8 @@ def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
     return inv
 
 def read_prices(filename:str) -> dict[str, float]:
-    prices = dict()
-    with open(filename) as FH:
-        data = csv.reader(FH)
-        for row in data:
-            try:
-                prices[ row[0] ] = float(row[1])
-            except IndexError as e:
-                continue
-
+    list_prices = parse_csv(filename, types=[str, float], has_headers=False)
+    prices = dict(list_prices)
     return prices
 
 def make_report(inventory:list[dict[str, str|int|float]],

@@ -5,17 +5,19 @@ import csv
 from fileparse import parse_csv
 
 def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
-    inv = parse_csv(filename,
-                    select=['name', 'quant', 'price'],
-                    types=[str, int, float]
-                   )
+    with open(filename) as FH:
+        inv = parse_csv(FH,
+                        select=['name', 'quant', 'price'],
+                        types=[str, int, float]
+                       )
 
     return inv
 
 def read_prices(filename:str) -> dict[str, float]:
-    list_prices = parse_csv(filename, types=[str, float], has_headers=False)
-    prices = dict(list_prices)
-    return prices
+    with open(filename) as FH:
+        list_prices = parse_csv(FH, types=[str, float], has_headers=False)
+        prices = dict(list_prices)
+        return prices
 
 def make_report(inventory:list[dict[str, str|int|float]],
                 prices: dict[str, float]

@@ -47,6 +47,17 @@ def inventory_report(inventory_filename, prices_filename):
     report = make_report(inventory, prices)
     print_report(report)
 
+
+def main(args):
+    if len(args) != 3:
+        raise SystemExit(f'Usage: {args[0]} invfile pricefile')
+
+    invfile = args[1]
+    pricefile = args[2]
+    inventory_report(invfile, pricefile)
+
+
 # Main starts from here
 if __name__ == "__main__":
-    inventory_report('Data/inventory.csv', 'Data/prices.csv')
+    import sys
+    main(sys.argv)

@@ -23,6 +23,7 @@ cur = conn.cursor()
 query = "SELECT * FROM 'Students'"
 min_exp = 2
 query += "WHERE exp > ?"
+query += "ORDER BY exp"
 cur.execute(query, (min_exp,))
 
 display_rows(cur)

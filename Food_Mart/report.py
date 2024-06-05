@@ -3,14 +3,17 @@
 '''
 import csv
 from fileparse import parse_csv
+from product import Product
 
 def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
     with open(filename) as FH:
-        inv = parse_csv(FH,
+        invdicts = parse_csv(FH,
                         select=['name', 'quant', 'price'],
                         types=[str, int, float]
                        )
-
+        inv = [ Product(pr['name'], pr['quant'], pr['price'])
+                for pr in invdicts
+              ]
     return inv
 
 def read_prices(filename:str) -> dict[str, float]:

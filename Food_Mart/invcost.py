@@ -10,7 +10,7 @@ def inventory_cost(filename:str) -> float:
     total_cost = 0.0
     inv = read_inventory(filename)
     for pr in inv:
-        total_cost += pr['quant'] * pr['price']
+        total_cost += pr.quant * pr.price
 
     return total_cost
 

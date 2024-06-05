@@ -3,27 +3,14 @@
 '''
 import csv
 import sys
+from report import read_inventory
 
 # Annotations
 def inventory_cost(filename:str) -> float:
     total_cost = 0.0
-
-    with open(filename) as FH:
-        data = csv.reader(FH)
-        # Skip the header line
-        headers = next(data)
-
-        # Starts iterating from second line onwards
-        for rowno, row in enumerate(data, start=1):
-            record = dict(zip(headers, row))
-            try:
-                quant = int(record['quant'])
-                price = float(record['price'])
-            except ValueError as e:
-                print(f"Row {rowno}: Couldn't convert: {row}")
-                continue
-
-            total_cost += quant * price
+    inv = read_inventory(filename)
+    for pr in inv:
+        total_cost += pr['quant'] * pr['price']
 
     return total_cost
 

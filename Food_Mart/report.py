@@ -2,21 +2,13 @@
     Report any gains/losses in inventory
 '''
 import csv
+from fileparse import parse_csv
 
 def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
-    inv = list()
-    with open(filename) as FH:
-        data = csv.reader(FH)
-        headers = next(data)
-
-        for row in data:
-            record = dict(zip(headers, row))
-            info = {
-                    'name' : record['name'],
-                    'quant': int(record['quant']),
-                    'price': float(record['price']),
-                   }
-            inv.append(info)
+    inv = parse_csv(filename,
+                    select=['name', 'quant', 'price'],
+                    types=[str, int, float]
+                   )
 
     return inv
 
@@ -63,3 +55,4 @@ def inventory_report(inventory_filename, prices_filename):
     print_report(report)
 
 # Main starts from here
+inventory_report('Data/inventory.csv', 'Data/prices.csv')

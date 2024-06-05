@@ -7,3 +7,9 @@ class Product:
         self.name = name
         self.quant = quant
         self.price = price
+
+    def cost(self):
+        return self.quant * self.price
+
+    def sell(self, nunits):
+        self.quant -= nunits

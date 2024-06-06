@@ -1,11 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 @app.route("/home")
 def home_view(): # https://127.0.0.1/
-    return "<h1>My Choice Online Store</h1>"
+    return render_template('home.html')
 
 @app.route("/about")
 def about_view():

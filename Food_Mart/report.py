@@ -4,6 +4,7 @@
 import csv
 from fileparse import parse_csv
 from product import Product
+import tableformat
 
 def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
     with open(filename) as FH:
@@ -55,6 +56,8 @@ def inventory_report(inventory_filename, prices_filename):
     inventory = read_inventory(inventory_filename)
     prices = read_prices(prices_filename)
     report = make_report(inventory, prices)
+
+    formatter = tableformat.TableFormatter()
     print_report(report)
 
 

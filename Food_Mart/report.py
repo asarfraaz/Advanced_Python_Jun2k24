@@ -12,9 +12,7 @@ def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
                         select=['name', 'quant', 'price'],
                         types=[str, int, float]
                        )
-        inv = [ Product(pr['name'], pr['quant'], pr['price'])
-                for pr in invdicts
-              ]
+        inv = [ Product(**pr) for pr in invdicts ]
     return inv
 
 def read_prices(filename:str) -> dict[str, float]:

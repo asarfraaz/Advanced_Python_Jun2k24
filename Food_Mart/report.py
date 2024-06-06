@@ -58,7 +58,7 @@ def inventory_report(inventory_filename, prices_filename):
     report = make_report(inventory, prices)
 
     formatter = tableformat.TableFormatter()
-    print_report(report)
+    print_report(report, formatter)
 
 
 def main(args):

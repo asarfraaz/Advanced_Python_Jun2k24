@@ -9,7 +9,7 @@ class Product:
         self.price = price
 
     def __repr__(self):
-        return f'Product({self.name}, {self.quant}, {self.price})'
+        return f'Product({self.name!r}, {self.quant}, {self.price})'
 
     def cost(self):
         return self.quant * self.price

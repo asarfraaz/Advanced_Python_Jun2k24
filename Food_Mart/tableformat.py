@@ -43,3 +43,9 @@ class TextTableFormatter(TableFormatter):
         else:
             print()
 
+class CsvTableFormatter(TableFormatter):
+    def headings(self, headers):
+        print(','.join(headers))
+
+    def row(self, rowdata):
+        print(','.join(rowdata))

@@ -36,15 +36,20 @@ def make_report(inventory:list[dict[str, str|int|float]],
 
     return report
 
-def print_report(report):
+def print_report(report, formatter):
     headers = ('Name', 'Quantity', 'Price', 'Change')
-    print("%10s %10s %10s %10s" % headers)
+    formatter.headings(headers)
+    #print("%10s %10s %10s %10s" % headers)
 
-    dashes = tuple(['-' * 10] * 4)
-    print("%10s %10s %10s %10s" % dashes)
+    #dashes = tuple(['-' * 10] * 4)
+    #print("%10s %10s %10s %10s" % dashes)
 
-    for row in report:
-        print("%10s %10d %10.2f %10.2f" % row)
+    #for row in report:
+        #print("%10s %10d %10.2f %10.2f" % row)
+
+    for name, quant, price, change in report:
+        rowdata = [name, str(quant), f'{price:.2f}', f'{change:.2f}']
+        formatter.row(rowdata)
 
 def inventory_report(inventory_filename, prices_filename):
     inventory = read_inventory(inventory_filename)

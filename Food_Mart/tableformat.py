@@ -2,6 +2,14 @@
     Classes to help format report table
 '''
 
+def create_formatter(fmt):
+    if fmt == "txt":
+        return TextTableFormatter()
+    elif fmt == "csv":
+        return CsvTableFormatter()
+    else:
+        raise RuntimeError(f'Unknown format: {fmt}')
+
 class TableFormatter:
     '''
         Interface for depicting a table

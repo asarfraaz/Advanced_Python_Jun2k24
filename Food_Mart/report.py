@@ -52,24 +52,23 @@ def print_report(report, formatter):
         rowdata = [name, str(quant), f'{price:.2f}', f'{change:.2f}']
         formatter.row(rowdata)
 
-def inventory_report(inventory_filename, prices_filename):
+def inventory_report(inventory_filename, prices_filename, fmt='txt'):
     inventory = read_inventory(inventory_filename)
     prices = read_prices(prices_filename)
     report = make_report(inventory, prices)
 
-    #formatter = tableformat.TableFormatter()
-    #formatter = tableformat.TextTableFormatter()
-    formatter = tableformat.CsvTableFormatter()
+    formatter = tableformat.create_formatter(fmt)
     print_report(report, formatter)
 
 
 def main(args):
-    if len(args) != 3:
-        raise SystemExit(f'Usage: {args[0]} invfile pricefile')
+    if len(args) != 4:
+        raise SystemExit(f'Usage: {args[0]} invfile pricefile fmt')
 
     invfile = args[1]
     pricefile = args[2]
-    inventory_report(invfile, pricefile)
+    fmt = args[3]
+    inventory_report(invfile, pricefile, fmt)
 
 
 # Main starts from here

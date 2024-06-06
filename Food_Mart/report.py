@@ -6,11 +6,14 @@ from fileparse import parse_csv
 from product import Product
 import tableformat
 
-def read_inventory(filename: str) -> list[dict[str, str|int|float]]:
+def read_inventory(filename: str, **opts) -> list[dict[str, str|int|float]]:
+    print(f'{type(opts)=}')
+    print(f'{opts=}')
     with open(filename) as FH:
         invdicts = parse_csv(FH,
                         select=['name', 'quant', 'price'],
-                        types=[str, int, float]
+                        types=[str, int, float],
+                        **opts,
                        )
         inv = [ Product(**pr) for pr in invdicts ]
     return inv

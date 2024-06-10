@@ -13,13 +13,13 @@ def crawler():
     base = "https://jsonplaceholder.typicode.com/posts"
     urls = [ f'{base}/{num}' for num in range(1, 15) ]
 
-    ##total = list()
-    ##for url in urls:
-    ##    print("Fetching", url)
-    ##    plen = get_post_len(url)
-    ##    total.append(plen)
+    total = list()
+    for url in urls:
+        print("Fetching", url)
+        plen = get_post_len(url)
+        total.append(plen)
 
-    total = map(get_post_len, urls)
+    #total = map(get_post_len, urls)
     print(sum(total))
 
 def main():

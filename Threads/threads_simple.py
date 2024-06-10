@@ -16,12 +16,16 @@ pr1 = threading.Thread(target=find_prod, name="PR1", args=(12, 78))
 
 # Add another thread for doing division
 dv1 = threading.Thread(target=find_quotient, name="DV1", args=(7657788877, 67))
+#dv1 = threading.Thread(target=find_quotient, name="DV1", args=(76, 67))
 
 import time
 start = time.time()
 
 pr1.start()
 dv1.start()
+
+pr1.join()
+dv1.join()
 
 print("Done")
 print("Time taken", time.time() - start)

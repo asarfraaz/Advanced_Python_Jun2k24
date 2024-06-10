@@ -10,7 +10,7 @@ def login():
     global login_counter
     thr_name = threading.current_thread().name
     print(f"{thr_name:>10} : {login_counter} -->")
-    #time.sleep(.3)
+    time.sleep(.3)
     login_counter += 1
     print(f"{thr_name:>10} :<-- {login_counter}")
     #time.sleep(.2)

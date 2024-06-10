@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p> Your book details </p>
+<h3> {{ book.title }}</h2>
+<p> Author : {{ book.author }}</p>
+<p> Price : {{ book.price }}</p>
+<p> Available copies : {{ book.quant }}</p>
+{% if book.quant > 0 %}
+    <div>
+        <a href="{{ url_for('buy_book_view', book_id=book.id) }}">Add to cart</a>
+    </div>
+{% endif %}
+
+
+<a href="/books">View all Books</a>
+{% endblock content %}

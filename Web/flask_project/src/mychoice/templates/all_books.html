@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2> Catalogue of all the books </h2>
+{% for book in books %}
+  <li>
+      <h3> {{loop.index}}> <a href="{{ url_for('show_book_view', book_id=book.id) }}">{{ book.title }} </a></h3>
+      <p> Price : {{ book.price }}</p>
+      <p> Available copies : {{ book.quant }}</p>
+  </li>
+{% endfor %}
+{% endblock content %}
